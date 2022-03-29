@@ -1,0 +1,44 @@
+let init = [1, 1, 1, 0, 1, 1];
+
+// if both neighbours away or both at home then household is home
+// If one is away or home then household is away
+// End of street neighbours, one is assumed away.
+
+// Iterate over array
+// sum array[i-1], array[i], array[i+1]
+// then array[i] === 1 or 'Home'
+// Iterate as per weeks
+
+// let finalOccupancy = [...init];
+
+const calculateOccupancy = (arr, weeks) => {
+    for (let i = 0; i < weeks; i++) {
+        console.log(`it is week: ${i}`);
+        console.log(init);
+        for (let j = 0; j < arr.length; j++) {
+            if (j === 0) {
+                console.log(arr[j]);
+                const occupancy = (arr[j] + arr[j + 1]) % 2;
+                init[j] = occupancy;
+                console.log(`Occupancy for arr[${j}] is ${occupancy}`);
+                console.log(init[j]);
+                console.log(init);
+            } else if (0 < j < arr.length) {
+                const occupancy = (arr[j] + arr[j - 1] + arr[j + 1]) % 2;
+                init[i] = occupancy;
+                console.log(`Occupancy for arr[${j}] is ${occupancy}`);
+                console.log(init[j]);
+                console.log(init);
+            } else {
+                const occupancy = (arr[j] + arr[j - 1]) % 2;
+                init[i] = occupancy;
+                console.log(`Occupancy for arr[${j}] is ${occupancy}`);
+                console.log(init[j]);
+                console.log(init);
+            }
+        }
+    }
+};
+
+
+console.log(init);
